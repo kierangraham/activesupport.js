@@ -1,0 +1,9 @@
+/**
+ * ActiveSupport for JavaScript library, version '<%= ACTIVE_SUPPORT_VERSION %>'
+ * (c) 2007 Nicolas Sanguinetti
+ *
+ * ActiveSupport for JavaScript is freely distributable under the terms of an
+ * MIT-style license. For details, see our web site: 
+ *   http://code.google.com/p/active-support-for-javascript/
+ *
+ */
