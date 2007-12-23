@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>JsSpec test</title>
+	<link rel="stylesheet" href="js-spec.css" type="text/css" charset="utf-8" />
+	<script type="text/javascript" src="../lib/prototype.js"></script>
+	<script type="text/javascript" src="../dist/active_support.js"></script>
+	<script type="text/javascript" src="jsspec.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	  with (Spec) {
+	    
+	    describe("An array", function() { with (this) {
+	      it("should respond to toSentence", function() {
+	        [].should( respond_to("toSentence") );
+	      });
+	      it("should return a string when called toSentence", function() {
+	        var be_a_string = satisfy(function(obj) { return Object.isString(obj) });
+	        [].toSentence().should( be_a_string );
+	        [1].toSentence().should( be_a_string );
+	        $R(1, 5).toArray().toSentence().should( be_a_string );
+	      });
+	    }});
+	    
+	    describe("An empty array, when called toSentence", function() { with(this) {
+	      it("should produce an empty string", function() {
+	        [].toSentence().should( equal("") );
+	      });
+	      it("should be unaffected by the passed options", function() {
+	        var expected = [].toSentence();
+	        var actual = [].toSentence({ connector: '--', skip_last_comma: true })
+	        actual.should( equal(expected) );
+	      });
+	    }});
+	    
+	    describe("A one element array, when called toSentence", function() { with(this) {
+	      it("should return its' first element as a string", function() {
+	        [1].toSentence().should( equal("1") );
+	        ["hello"].toSentence().should( equal("hello") );
+	      });
+	      it("should be unaffected by the passed options", function() {
+	        var expected = ["a"].toSentence();
+	        var actual = ["a"].toSentence({ connector: '--', skip_last_comma: true })
+	        actual.should( equal(expected) );
+	      });
+	    }});
+	    
+	    describe("A two element array, when called toSentence", function() { with(this) {
+	      it("should return its elements joined by 'and' by default", function() {
+	        ["laurel", "hardy"].toSentence().should( equal("laurel and hardy") );
+	      });
+	      it("should return its elements joined by the passed connector", function() {
+	        ["hello", "world"].toSentence({ connector: "x" }).should( equal("hello x world") );
+	      });
+	    }});
+	    
+	    describe("An array of N elements, when called toSentence", function() { with(this) {
+	      it("should join the elements with a comma and separate the last with an 'and'", function() {
+	        ["me", "myself", "irene"].toSentence().should( equal("me, myself, and irene") );
+	      });
+	      it("should have at least N-1 ocurrences of a comma by default", function() {
+	        var elements = ["me", "myself", "irene"];
+	        elements.toSentence().gsub("[^,]", "").split("").should( have_at_least(2, "elements") );
+	        elements.push("bob");
+	        elements.toSentence().gsub("[^,]", "").split("").should( have_at_least(3, "elements") );
+	      });
+	      it("should include all elements in the original array", function() {
+	        ["me", "myself", "irene"].toSentence().should( include("me", "myself", "irene") );
+	      });
+	    }});
+	    
+	  }
+	
+    document.observe('dom:loaded', function() { Specs.run() });
+	</script>
+</head>
+<body>
+</body>
+</html>

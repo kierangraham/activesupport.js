@@ -9,8 +9,8 @@ Array.prototype.toSentence = function() {
 	
 	switch (this.length) {
 		case 0:  return "";
-		case 1:  return this.first();
-		case 2:  return this[0] + " " + options.connector + " " + this[-1];
-		default: return this.slice(0, -1).join(', ') + (options.skip_last_comma ? ' ' : ', ') + options.connector + this[-1];
+		case 1:  return this.first().toString();
+		case 2:  return this[0] + " " + options.connector + " " + this[1];
+		default: return this.slice(0, -1).join(', ') + (options.skip_last_comma ? ' ' : ', ') + options.connector + " " + this[this.length-1];
 	}
 };
