@@ -118,8 +118,8 @@ Object.extend(Date.prototype, {
 		var distanceInMinutes = ((Date.now().getTime() - this.getTime()).abs() / 60000).round();
 		return $H(Date.RELATIVE_TIME_RANGES).map(function(pair) { 
 			return (distanceInMinutes <= pair.first()) ? 
-				(options["prefix"] + " " + $Q(pair.last(), distanceInMinutes) + " " + options["suffix"]).strip() : false; 
-		}).find(Prototype.K) || $Q("#{this.relativeDate()} at #{this.strftime('%H:%M')}", this);
+				(options["prefix"] + " " + Object.isFunction(pair[1]) ? pair[1](distanceInMinutes) : pair[1] + " " + options["suffix"]).strip() : false; 
+		}).find(Prototype.K) || "#{date} at #{time}".interpolate({ date: this.relativeDate(), time: this.strftime('%H:%M') });
 	},
 	since: function(seconds) {
 	 	return seconds.since(this);

@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="js-spec.css" type="text/css" charset="utf-8" />
 	<script type="text/javascript" src="../lib/prototype.js"></script>
 	<script type="text/javascript" src="../dist/active_support.js"></script>
-	<script type="text/javascript" src="../dist/jsspec.js"></script>
+	<script type="text/javascript" src="jsspec.js"></script>
 	<script type="text/javascript" charset="utf-8">
-    document.observe('dom:loaded', Specs.run);
+    document.observe('dom:loaded', function() { Specs.run() });
 	</script>
 </head>
 <body>

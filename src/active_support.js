@@ -15,8 +15,7 @@ var ActiveSupport = {
 
 window.pluralize = ActiveSupport.pluralize;
 
-<%= include 'interpolatable.js',
-            'inflector.js',
+<%= include 'inflector.js',
             'string.js',
             'array.js',
             'number.js',
