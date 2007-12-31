@@ -1,20 +1,21 @@
-li {
-	list-style: none;
+th, td {
+	text-align: left;
+	padding: 0 .2em;
 }
 
-li.pending {
+tr.pending {
 	background: #ee9;
 }
 
-li.pass {
+tr.pass {
 	background: #9e9;
 }
 
-li.fail {
+tr.fail {
 	background: #e99;
 }
 
-li.error {
+tr.error {
 	background: #111;
 	color: #fff;
 }
@@ -22,6 +23,6 @@ li.error {
 .label {
 	text-transform: uppercase;
 	font-weight: bold;
-	margin-right: .5em;
+	padding: 0 .2em;
 }
 
